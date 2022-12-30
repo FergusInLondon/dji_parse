@@ -60,5 +60,6 @@ jobs:
       #----------------------------------------------
       - name: Run tests
         run: |
-          poetry run flake8 .
-          poetry run pytest
+          poetry run flake8 dji_parse/
+          poetry run black dji_parse/
+          poetry run pytest tests/
