@@ -71,11 +71,6 @@ class JSONEncoder(BaseEncoder):
         json.dump([dataclasses.asdict(pos) for pos in self.entries], self.output)
 
 
-_TYPE_CSV_OUTPUT = "csv"
-_TYPE_GPX_OUTPUT = "gpx"
-_TYPE_JSON_OUTPUT = "json"
-
-
 def get_encoder(output_type: EncoderType) -> Type[BaseEncoder]:
     try:
         return {

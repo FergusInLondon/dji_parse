@@ -33,12 +33,12 @@ Options:
 
 Telemetry samples include:
 
-1. A timestamp computed by adding the sample timestamp (see (2)) to the video's creation date.
-2. A relative timestamp.
-3. A Latitude and Longitude pair.
-4. Relative Elevation.
-5. Distance.
-6. Horizontal and Vertical Velocities.
+1. A timestamp computed by adding the sample timestamp (see (2)) to the video's creation date. (`string` in ISO format)
+2. A relative timestamp. (`HH:MM:SS`)
+3. A Latitude and Longitude pair. (`float`)
+4. Relative Elevation. (`float` in unit `meters`)
+5. Distance. (`float` in unit `meters`)
+6. Horizontal and Vertical Velocities. (`float` in unit `meters/secs`)
 
 From the samples I've parsed it appears that the telemetry subtitles are generated at a sample-rate of 1Hz - i.e. they provide a single observation per second - with GPS precision of 4 decimal places. 
 
@@ -49,7 +49,7 @@ Better values are available from the `FlightRecord` binary logs, however the for
 ```text
 time,timestamp,latitude,longitude,rel_elevation,distance,horizontal_velocity,vertical_velocity
 ...
-2022-12-24T11:34:55+00:00,0:01:46,51.3847,0.1272,-0.5,1.91,0.0,-0.0
+2022-12-24T11:34:55+00:00,00:01:46,51.3847,0.1272,-0.5,1.91,0.0,-0.0
 ```
 
 #### Example: GPX
@@ -75,7 +75,7 @@ time,timestamp,latitude,longitude,rel_elevation,distance,horizontal_velocity,ver
 [
   {
     "time": "2022-12-24T11:34:55+00:00",
-    "timestamp": "0:01:46",
+    "timestamp": "00:01:46",
     "latitude": 51.3847,
     "longitude": 0.1272,
     "rel_elevation": -0.5,

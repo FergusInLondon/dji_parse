@@ -59,7 +59,7 @@ def position_from_subtitle(start_time: datetime, message: SubRipItem) -> Positio
     ts = timestamp(message.start)
     return Position(
         time=(start_time + ts).isoformat(),
-        timestamp=str(ts),
+        timestamp="{:0>8}".format(str(ts)),
         latitude=float(parsed[1]),
         longitude=float(parsed[0]),
         distance=float(parsed[2]),

@@ -2,8 +2,7 @@ import pathlib
 from time import perf_counter
 from typing import IO
 
-import dji_parse.console
-from dji_parse.parsing import video_metadata, parse_subtitles, position_from_subtitle
+from dji_parse import console, parsing
 from dji_parse.encoders import get_encoder, EncoderType
 
 import click
@@ -41,11 +40,11 @@ def run(input_video: pathlib.Path, output: IO, output_format: str = "gpx"):
         exit(-1)
 
     with Timer() as t:
-        metadata = video_metadata(input_video)
+        metadata = parsing.video_metadata(input_video)
         console.print(f"- have input video created on {metadata.creation_time}")
 
         with console.busy("parsing subtitles from video..."):
-            subs = parse_subtitles(input_video)
+            subs = parsing.parse_subtitles(input_video)
 
         console.print(f"- parsed [bold]{len(subs)}[/bold] datapoints")
 
@@ -53,7 +52,8 @@ def run(input_video: pathlib.Path, output: IO, output_format: str = "gpx"):
             encoder(
                 output,
                 entries=[
-                    position_from_subtitle(metadata.creation_time, s) for s in subs
+                    parsing.position_from_subtitle(metadata.creation_time, s)
+                    for s in subs
                 ],
             ).write()
 
