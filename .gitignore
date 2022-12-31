@@ -1,3 +1,6 @@
+.pytest_cache
 example.mp4
 .idea/
 __pycache__/
+build/
+dist/
